@@ -22,7 +22,7 @@ public final class StatsAddon extends JavaPlugin
     @Override
     public void onEnable()
     {
-        // Check if bw plugin is loaded
+        // Check if BW plugin is loaded and updated
         if (Bukkit.getPluginManager().getPlugin("BedWars1058") == null)
         {
             this.getLogger().severe("I can't run without BedWars1058 Plugin!");
@@ -46,15 +46,14 @@ public final class StatsAddon extends JavaPlugin
         // Setup configuration
         cfg = new ConfigManager(this, "config", "plugins/BedWars1058/Addons/MStats");
 
-        setupConfiguration();
-
-        this.loaded = true;
-
-        final CommandExecutor statsExecutor;
+        this.setupConfiguration();
 
         // Register commands
+        final CommandExecutor statsExecutor;
+
         if (cfg.getBoolean(ConfigPath.PAPI_ENABLED))
         {
+            // Check if PAPI plugin is loaded
             if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null)
             {
                 this.getLogger().severe("Conflict found: You have PlaceholderAPI enabled on config but you don't have the plugin installed. So, PlaceholderAPI support has NOT been loaded.");
@@ -72,6 +71,8 @@ public final class StatsAddon extends JavaPlugin
 
         Bukkit.getPluginCommand("stats").setExecutor(statsExecutor);
         Bukkit.getPluginCommand("statsreload").setExecutor(new ReloadCommand());
+
+        this.loaded = true;
     }
 
     @Override
@@ -83,7 +84,7 @@ public final class StatsAddon extends JavaPlugin
         }
     }
 
-    private static void setupConfiguration()
+    private void setupConfiguration()
     {
         final YamlConfiguration yml = cfg.getYml();
         yml.options().header("This is a BedWars1058 mini-game add-on by https://github.com/JustMyra\n" +

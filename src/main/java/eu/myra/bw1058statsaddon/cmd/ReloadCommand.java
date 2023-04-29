@@ -21,7 +21,7 @@ public class ReloadCommand implements CommandExecutor
                 StatsAddon.getCfg().reload();
                 commandSender.sendMessage(stringFromPath(ConfigPath.RELOAD_CMD_SUCCESS));
             }
-            catch (Exception ignored)
+            catch (final Exception ignored)
             {
                 commandSender.sendMessage("§cAn error occurred while reloading configuration. Please check console for any error.");
             }
