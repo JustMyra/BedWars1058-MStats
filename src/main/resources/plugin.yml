@@ -1,0 +1,13 @@
+name: BedWars1058-MStats
+version: '${project.version}'
+main: eu.myra.bw1058statsaddon.StatsAddon
+softdepend: [PlaceholderAPI]
+depend: [BedWars1058]
+author: JustMyra_
+commands:
+  stats:
+    description: 'Shows your BW1058 stats.'
+    usage: /stats
+  statsreload:
+    description: 'Reloads StatsAddon configuration.'
+    usage: /statsreload
